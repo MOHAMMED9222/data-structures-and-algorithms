@@ -135,6 +135,7 @@ const citiesAtoJ = (arr) => {
 // Create a regular expression pattern that matches any city names that start with letters A through J, inclusive. The pattern matches the beginning of the string ^, followed by a character range of A through J [A-J], and the i flag makes the pattern case-insensitive.
   const pattern = /^[A-J]/i;
 // Use the filter method of the input array to create a new array that contains only the city names that match the regular expression pattern. The test method of the regular expression pattern is used to test each city name. The test method returns true if the city name matches the pattern, and false otherwise.
+// pattern is the conditional
 return arr.filter(city => pattern.test(city));
 
 };
