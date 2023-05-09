@@ -92,3 +92,7 @@ Note that when you check your code into GitHub, all of your tests will automatic
 
 <img width="671" alt="Screen Shot 2023-04-06 at 5 33 59 PM" src="https://user-images.githubusercontent.com/122310719/230522355-4db52dba-4222-4527-b6fb-94db80ff2190.png">
 
+### code challenge class 26 
+<img width="760" alt="Screen Shot 2023-05-09 at 2 00 49 PM" src="https://github.com/MOHAMMED9222/data-structures-and-algorithms/assets/122310719/75f34f19-b589-4f65-981d-b310dc65c2a2">
+
+
