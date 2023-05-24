@@ -1,55 +1,54 @@
 class Graph {
   constructor() {
-    this.adjacencyList = new Map();
+    this.nodes = [];
+    this.adjacencyList = {};
   }
 
-  addVertex(vertex) {
-    if (!this.adjacencyList.has(vertex)) {
-      this.adjacencyList.set(vertex, []);
-    }
+  addNode(node) {
+    this.nodes.push(node);
+    this.adjacencyList[node] = [];
   }
 
-  addEdge(vertex1, vertex2) {
-    if (this.adjacencyList.has(vertex1) && this.adjacencyList.has(vertex2)) {
-      const connections1 = this.adjacencyList.get(vertex1);
-      const connections2 = this.adjacencyList.get(vertex2);
-      connections1.push(vertex2);
-      connections2.push(vertex1);
-    }
+  addEdge(node1, node2) {
+    this.adjacencyList[node1].push(node2);
+    this.adjacencyList[node2].push(node1);
   }
 
-  breadthFirst(startVertex) {
-    const visited = new Set();
-    const queue = [startVertex];
-    visited.add(startVertex);
+  breadthFirst(startNode) {
+    const visited = [];
+    const queue = [startNode];
 
     while (queue.length > 0) {
-      const currentVertex = queue.shift();
-      console.log(currentVertex);
+      const currentNode = queue.shift();
+      visited.push(currentNode);
 
-      const connections = this.adjacencyList.get(currentVertex);
-      for (let i = 0; i < connections.length; i++) {
-        const neighbor = connections[i];
-        if (!visited.has(neighbor)) {
-          visited.add(neighbor);
+      const neighbors = this.adjacencyList[currentNode];
+      for (let neighbor of neighbors) {
+        if (!visited.includes(neighbor) && !queue.includes(neighbor)) {
           queue.push(neighbor);
         }
       }
     }
+
+    return visited;
   }
 }
 
 // Example usage:
 const graph = new Graph();
-graph.addVertex('A');
-graph.addVertex('B');
-graph.addVertex('C');
-graph.addVertex('D');
-graph.addVertex('E');
+graph.addNode('Pandora');
+graph.addNode('Arendelle');
+graph.addNode('Metroville');
+graph.addNode('Monstroplolis');
+graph.addNode('Narnia');
+graph.addNode('Naboo');
 
-graph.addEdge('A', 'B');
-graph.addEdge('A', 'C');
-graph.addEdge('B', 'D');
-graph.addEdge('C', 'E');
+graph.addEdge('Pandora', 'Arendelle');
+graph.addEdge('Arendelle', 'Metroville');
+graph.addEdge('Metroville', 'Monstroplolis');
+graph.addEdge('Metroville', 'Narnia');
+graph.addEdge('Monstroplolis', 'Naboo');
+graph.addEdge('Narnia', 'Naboo');
 
-graph.breadthFirst('A');
+const result = graph.breadthFirst('Pandora');
+console.log(result.join(', ')); // Output: Pandora, Arendelle, Metroville, Monstroplolis, Narnia, Naboo
